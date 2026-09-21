@@ -1,0 +1,7 @@
+PyQt6>=6.6.0
+markdown-it-py>=3.0.0
+mdit-py-plugins>=0.4.0
+linkify-it-py>=2.0.0
+pygments>=2.17.0
+Pillow>=10.0.0
+PyInstaller>=6.0.0
