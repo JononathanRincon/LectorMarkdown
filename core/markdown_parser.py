@@ -61,7 +61,7 @@ class MarkdownParser:
             except Exception:
                 lexer = TextLexer()
 
-        style_name = "monokai" if self._current_theme == "dark" else "friendly"
+        style_name = "dracula" if self._current_theme == "dark" else "friendly"
         formatter = HtmlFormatter(
             noclasses=True,
             nowrap=True,
@@ -158,7 +158,15 @@ class MarkdownParser:
         preprocessed = self._preprocess_markdown(markdown_text)
         rendered_body = self._md.render(preprocessed)
 
-        # Enhance code blocks by wrapping them in nice container divs if needed
+        # Explicit inline styles on pre and code tags to guarantee contrast in Qt QTextBrowser
+        code_bg = "#181825" if theme == "dark" else "#f8fafc"
+        code_color = "#f8f8f2" if theme == "dark" else "#1e293b"
+        rendered_body = re.sub(
+            r"<pre><code",
+            f'<pre style="background-color: {code_bg}; color: {code_color};"><code style="background-color: {code_bg}; color: {code_color};"',
+            rendered_body
+        )
+
         css = get_html_css(theme)
         
         full_html = f"""<!DOCTYPE html>

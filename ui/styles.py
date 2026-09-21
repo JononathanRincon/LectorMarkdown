@@ -12,8 +12,9 @@ def get_html_css(theme: str = "light") -> str:
         h2_border = "#313244"
         link_color = "#89b4fa"
         inline_code_bg = "#313244"
-        inline_code_color = "#f38ba8"
+        inline_code_color = "#f5c2e7"
         code_block_bg = "#181825"
+        code_block_text = "#f8f8f2"
         code_block_border = "#313244"
         blockquote_bg = "#181825"
         blockquote_border = "#89b4fa"
@@ -31,6 +32,7 @@ def get_html_css(theme: str = "light") -> str:
         inline_code_bg = "#f1f5f9"
         inline_code_color = "#e11d48"
         code_block_bg = "#f8fafc"
+        code_block_text = "#1e293b"
         code_block_border = "#e2e8f0"
         blockquote_bg = "#f8fafc"
         blockquote_border = "#3b82f6"
@@ -113,6 +115,7 @@ def get_html_css(theme: str = "light") -> str:
     }}
     pre {{
         background-color: {code_block_bg};
+        color: {code_block_text};
         border: 1px solid {code_block_border};
         border-radius: 6px;
         padding: 14px 18px;
@@ -123,9 +126,10 @@ def get_html_css(theme: str = "light") -> str:
         overflow-x: auto;
     }}
     pre code {{
-        background-color: transparent;
-        color: inherit;
+        background-color: {code_block_bg};
+        color: {code_block_text};
         padding: 0;
+        border: 0;
         border-radius: 0;
     }}
     table {{

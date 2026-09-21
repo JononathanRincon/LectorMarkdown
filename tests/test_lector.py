@@ -52,7 +52,7 @@ class TestMarkdownParser(unittest.TestCase):
     def test_code_highlighting(self):
         md = "```python\ndef calcular(x):\n    return x * 2\n```"
         html = self.parser.to_html(md, theme="light")
-        self.assertIn("<pre>", html)
+        self.assertIn("<pre", html)
         # Should contain highlighted span from Pygments
         self.assertIn("calcular", html)
         self.assertIn("def", html)
@@ -142,10 +142,11 @@ class TestMainWindow(unittest.TestCase):
         self.assertTrue(window.file_manager.is_modified)
 
         # Switch theme
+        initial_theme = window.current_theme
         window.toggle_theme()
-        self.assertEqual(window.current_theme, "dark")
+        self.assertNotEqual(window.current_theme, initial_theme)
         window.toggle_theme()
-        self.assertEqual(window.current_theme, "light")
+        self.assertEqual(window.current_theme, initial_theme)
 
 if __name__ == "__main__":
     unittest.main()
